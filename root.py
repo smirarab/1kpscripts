@@ -10,6 +10,8 @@ import os
 import copy
 import os.path
 
+dir=os.path.dirname(os.path.realpath(__file__))
+
 ROOTS = [
         ["Red Algae","Chromista (Algae)"],
         ["Glaucophyta (Algae)"],
@@ -54,7 +56,7 @@ if __name__ == '__main__':
         resultsFile="%s.%s" % (treeName, "rerooted")
     
     c={}
-    for x in open("annotate"):
+    for x in open(os.path.join(dir,"annotate.txt")):
         c[x.split('\t')[0]] = x.split('\t')[2][0:-1]
 
     trees = dendropy.TreeList.get_from_path(treeName, 'newick',rooted=True, preserve_underscores=True)
