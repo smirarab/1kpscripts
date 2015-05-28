@@ -1,0 +1,18 @@
+#!/bin/sh
+
+module load gcc
+ 
+g=$(echo $*|grep -e "-w")
+if [ -n "$g" ]
+then
+  output=`echo $*|sed -e 's/.*-w //g' -e 's/ .*//g'`
+  if [ -d $output ]
+  then
+    back=`mktemp -d ${output}_back_XXXXXX`
+    mv $output/* $back
+    echo backing up the existing directory to $back >&2
+    rm -r $output
+  fi
+  mkdir $output
+fi
+$HOME/bin/raxmlHPC-AVX-git-feb52015 $*
