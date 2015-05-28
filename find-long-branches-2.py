@@ -10,6 +10,7 @@ import os
 import copy
 import os.path
 
+hdir=os.path.dirname(os.path.realpath(__file__))
 
 def mean(data):
     """Return the sample arithmetic mean of data."""
@@ -51,7 +52,7 @@ if __name__ == '__main__':
     SD=int(sys.argv[2])
     
     c={}
-    for x in open(os.path.join(dir,"annotate.txt")):
+    for x in open(os.path.join(hdir,"annotate.txt")):
         c[x.split('\t')[0]] = x.split('\t')[2][0:-1]
 
     trees = dendropy.TreeList.get_from_path(treeName, 'newick',rooted=True, preserve_underscores=True)
