@@ -24,14 +24,14 @@ mkdir logs
 seq=`grep "_" $CD/$INPUT|wc -l|sed -e "s:$: / 2:g"|bc`
 median=`grep -A1 "_" $CD/$INPUT |grep -v ">"|awk '{print length($0)}'|sort -n|head -n $seq|tail -n1`
 
-echo Expected sequence length is set to $median letters > $CD/logs/std.out.upp.$T.$1
+echo Expected sequence length is set to $median letters > $CD/logs/std.out.upp.FAA.$1
 
 tmp=`mktemp -d`
-$DIR/run-upp-wrapper.sh -s $CD/$INPUT -B 100000 -M $median -T 0.66 -m amino -x $C -o $T -d $CD/upp  1>>$CD/logs/std.out.upp.$T.$1 2>$CD/logs/std.err.upp.$T.$1
+$DIR/run-upp-wrapper.sh -s $CD/$INPUT -B 100000 -M $median -T 0.66 -m amino -x $C -o FAA -d $CD/upp  1>>$CD/logs/std.out.upp.FAA.$1 2>$CD/logs/std.err.upp.FAA.$1
 
 if [ -s $CD/upp/${T}_alignment.fasta ]; then
  ln -sf upp/${T}_alignment.fasta ${T}-upp-unmasked.fasta
- test "`grep -l 'No query' $CD/logs/std.err.upp.$T.$1`" != ""  && ( ln -s ${T}_alignment.fasta upp/${T}_alignment_masked.fasta ) 
+ test "`grep -l 'No query' $CD/logs/std.err.upp.FAA.$1`" != ""  && ( ln -s ${T}_alignment.fasta upp/${T}_alignment_masked.fasta ) 
  if [ -s upp/${T}_alignment_masked.fasta ]; then
    ln -sf upp/${T}_alignment_masked.fasta ${T}-upp-masked.fasta
  else 
@@ -47,5 +47,5 @@ if [ -s $CD/upp/${T}_alignment.fasta ]; then
     # remove 1st and 2nd codon positions
     $HOME/workspace/global/src/shell/create_1stAnd2ndcodon_alignment.sh FNA2AA-upp-masked.fasta FNA2AA-upp-masked-c12.fasta FNA2AA-upp-masked-c12.part; 
  fi
- test "$err" == "T" || ( echo "Done">.done.$T.upp )
+ test "$err" == "T" || ( echo "Done">.done.FAA.upp )
 fi 

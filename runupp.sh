@@ -1,7 +1,7 @@
 #!/bin/bash
 
-test $# == 2 || echo USAGE: $0 gene_id num_cpus
-test $# == 2 || exit 1
+test $# == 3 || echo USAGE: $0 gene_id num_cpus homedir
+test $# == 3 || exit 1
 
 module load jdk64 
 module load perl
@@ -9,7 +9,7 @@ module load python/2.7.3-epd-7.3.2
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-H=/work/01721/smirarab/1kp/capstone/secondset
+H=$3
 T=FAA
 INPUT=$1.input.$T
 C=$2
@@ -20,8 +20,7 @@ cd $CD
 mkdir logs
 
 # Find median sequence length for the genomes (i.e., sequences with a _ in their name)
-seq=`grep "_" $CD/$INPUT|wc -l|sed -e "s:$: / 2:g"|bc`
-median=`grep -A1 "_" $CD/$INPUT |grep -v ">"|awk '{print length($0)}'|sort -n|head -n $seq|tail -n1`
+median=`$DIR/medseqlen.sh $CD/$INPUT`
 
 echo Expected sequence length is set to $median letters > $CD/logs/std.out.upp.$T.$1
 
