@@ -1,6 +1,6 @@
 #!/bin/bash
 
-med=3
+med=3-3
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
