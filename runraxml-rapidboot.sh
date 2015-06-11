@@ -52,9 +52,9 @@ if [ "$donebs" == "" ]; then
  rename "best" "best.back" *best
  # Estimate the RAxML best tree
  if [ $CPUS -gt 1 ]; then
-  $DIR/raxmlHPC -m $model -T $CPUS -n best -s ../$in.phylip $s -N $bestN &> ../logs/best_std.errout.$in
+  $DIR/raxmlHPC-PTHREADS -m $model -T $CPUS -n best -s ../$in.phylip $s -N $bestN &> ../logs/best_std.errout.$in
  else
-  $DIR/raxmlHPC-PTHREADS -m $model -n best -s ../$in.phylip $s -N $bestN &> ../logs/best_std.errout.$in
+  $DIR/raxmlHPC -m $model -n best -s ../$in.phylip $s -N $bestN &> ../logs/best_std.errout.$in
  fi
 fi
  
@@ -83,9 +83,9 @@ if [ "$donebs" == "" ]; then
   rm RAxML_info.ml
   if [ $crep -gt 0 ]; then
    if [ $CPUS -gt 1 ]; then
-      $DIR/raxmlHPC -m $model -n ml -s ../$in.phylip -N $crep $boot -T $CPUS  $s &> ../logs/ml_std.errout.$in
+      $DIR/raxmlHPC-PTHREADS -m $model -n ml -s ../$in.phylip -N $crep $boot -T $CPUS  $s &> ../logs/ml_std.errout.$in
    else
-      $DIR/raxmlHPC-PTHREADS -m $model -n ml -s ../$in.phylip -N $crep $boot $s &> ../logs/ml_std.errout.$in
+      $DIR/raxmlHPC -m $model -n ml -s ../$in.phylip -N $crep $boot $s &> ../logs/ml_std.errout.$in
    fi
   fi
 fi

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x 
-
 x=$1;
 
 mask=`cat $x/upp/FAA_insertion_columns.txt|tr ',' '\n'|sed -e "s/-/ /g"|awk '{if ($1>-1) print $1*3"-"$2*3+2}'|tr '\n' ','|sed -e "s/,$//g";`;
