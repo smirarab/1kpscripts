@@ -39,7 +39,8 @@ if [ -s $CD/upp/${T}_alignment.fasta ]; then
  # derive other form of the alignment (fna and fna-c12)
  if [ "$T" == "FAA" ]; then
     # translate back to fna
-    perl $HOME/workspace/global/src/perl/pepMfa_to_cdsMfa.pl FAA-upp-unmasked.fasta $1.input.FNA 1>FNA2AA-upp-unmasked.fasta;
+    #perl $HOME/workspace/global/src/perl/pepMfa_to_cdsMfa.pl FAA-upp-unmasked.fasta $1.input.FNA 1>FNA2AA-upp-unmasked.fasta;
+    python $DIR/backtranslate.py FAA-upp-unmasked.fasta $1.input.FNA 1>FNA2AA-upp-unmasked.fasta 2>translate.log
     # mask insertion sites from fna alignment
     $DIR/mask-insertion.sh .
     # remove 1st and 2nd codon positions
