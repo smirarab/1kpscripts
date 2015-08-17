@@ -4,23 +4,24 @@ set -x
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 H=/work/01721/smirarab/1kp/capstone/secondset
 
-test $# == 5 || exit 1
+test $# == 7 || exit 1
 
 ALGNAME=$1
 DT=$2
 CPUS=$3
 ID=$4
 label=$5
+bestN=$6
+rep=$7
 
 S=raxml
 in=$DT-$ALGNAME
-rep=20
-bestN=2
 boot="-x $RANDOM"
 s="-p $RANDOM"
 dirn=raxmlboot.$in.$label
 
 cd $H/genes/$ID/
+mkdir logs
 
 $HOME/workspace/global/src/shell/convert_to_phylip.sh $in.fasta $in.phylip
 test "`head -n 1 $in.phylip`" == "0 0" && exit 1
@@ -36,9 +37,9 @@ if [ "$DT" == "FAA" ]; then
     cd ..
     tar cfj modelselection-logs.tar.bz --remove-files modelselection
   fi
-  model=PROTCAT`sed -e "s/.* //g" bestModel.$ALGNAME`
+  model=PROTGAMMA`sed -e "s/.* //g" bestModel.$ALGNAME`
 else
-  model=GTRCAT
+  model=GTRGAMMA
 fi
 
 mkdir $dirn
@@ -52,9 +53,9 @@ if [ "$donebs" == "" ]; then
  rename "best" "best.back" *best
  # Estimate the RAxML best tree
  if [ $CPUS -gt 1 ]; then
-  $DIR/raxmlHPC -m $model -T $CPUS -n best -s ../$in.phylip $s -N $bestN &> ../logs/best_std.errout.$in
+  $DIR/raxmlHPC-PTHREADS -m $model -T $CPUS -n best -s ../$in.phylip $s -N $bestN &> ../logs/best_std.errout.$in
  else
-  $DIR/raxmlHPC-PTHREADS -m $model -n best -s ../$in.phylip $s -N $bestN &> ../logs/best_std.errout.$in
+  $DIR/raxmlHPC -m $model -n best -s ../$in.phylip $s -N $bestN &> ../logs/best_std.errout.$in
  fi
 fi
  
@@ -62,8 +63,12 @@ fi
 if [ $rep == 0 ]; then
    mv logs-best.tar.bz logs-best.tar.bz.back.$RANDOM
    tar cvfj logs-best.tar.bz --remove-files RAxML_log.* RAxML_parsimonyTree.* RAxML_*back*  RAxML_result.best.*
-   cd ..
-   echo "Done">.done.best.$dirn
+   if [ -s RAxML_bestTree.best ]; then
+    cd ..
+    echo "Done">.done.best.$dirn
+    exit 0
+   fi
+   exit 1
 fi
 
 #Figure out if bootstrapping has already finished
@@ -83,9 +88,9 @@ if [ "$donebs" == "" ]; then
   rm RAxML_info.ml
   if [ $crep -gt 0 ]; then
    if [ $CPUS -gt 1 ]; then
-      $DIR/raxmlHPC -m $model -n ml -s ../$in.phylip -N $crep $boot -T $CPUS  $s &> ../logs/ml_std.errout.$in
+      $DIR/raxmlHPC-PTHREADS -m $model -n ml -s ../$in.phylip -N $crep $boot -T $CPUS  $s &> ../logs/ml_std.errout.$in
    else
-      $DIR/raxmlHPC-PTHREADS -m $model -n ml -s ../$in.phylip -N $crep $boot $s &> ../logs/ml_std.errout.$in
+      $DIR/raxmlHPC -m $model -n ml -s ../$in.phylip -N $crep $boot $s &> ../logs/ml_std.errout.$in
    fi
   fi
 fi
