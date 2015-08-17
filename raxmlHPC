@@ -1,6 +1,5 @@
 #!/bin/sh
 
-module load gcc
  
 g=$(echo $*|grep -e "-w")
 if [ -n "$g" ]
