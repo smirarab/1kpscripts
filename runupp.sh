@@ -24,8 +24,12 @@ median=`$DIR/medseqlen.sh $CD/$INPUT`
 
 echo Expected sequence length is set to $median letters > $CD/logs/std.out.upp.$T.$1
 
-tmp=`mktemp -d`
-$DIR/run-upp-wrapper.sh -s $CD/$INPUT -B 100000 -M $median -T 0.66 -m amino -x $C -o $T -d $CD/upp  1>>$CD/logs/std.out.upp.$T.$1 2>$CD/logs/std.err.upp.$T.$1
+if [ -s $CD/upp/${T}_alignment.fasta ]; then
+ echo results seem to exist already. will not run UPP again
+else
+ tmp=`mktemp -d`
+ $DIR/run-upp-wrapper.sh -s $CD/$INPUT -B 100000 -M $median -T 0.66 -m amino -x $C -o $T -d $CD/upp  1>>$CD/logs/std.out.upp.$T.$1 2>$CD/logs/std.err.upp.$T.$1
+fi
 
 if [ -s $CD/upp/${T}_alignment.fasta ]; then
  ln -sf upp/${T}_alignment.fasta ${T}-upp-unmasked.fasta
@@ -39,7 +43,8 @@ if [ -s $CD/upp/${T}_alignment.fasta ]; then
  # derive other form of the alignment (fna and fna-c12)
  if [ "$T" == "FAA" ]; then
     # translate back to fna
-    perl $HOME/workspace/global/src/perl/pepMfa_to_cdsMfa.pl FAA-upp-unmasked.fasta $1.input.FNA 1>FNA2AA-upp-unmasked.fasta;
+    #perl $HOME/workspace/global/src/perl/pepMfa_to_cdsMfa.pl FAA-upp-unmasked.fasta $1.input.FNA 1>FNA2AA-upp-unmasked.fasta;
+    python $DIR/backtranslate.py FAA-upp-unmasked.fasta $1.input.FNA 1>FNA2AA-upp-unmasked.fasta 2>translate.log
     # mask insertion sites from fna alignment
     $DIR/mask-insertion.sh .
     # remove 1st and 2nd codon positions
