@@ -1,9 +1,11 @@
 #!/usr/bin/env perl
 
 #print $ARGV[0]." ".$ARGV[1]." ".$#ARGV."\n";
+use File::Basename;
 
+my $dir = dirname(__FILE__);
 
-$raxmlHPC = "raxmlHPC-AVX-git-feb52015";
+$raxmlHPC = $dir."/raxmlHPC";
 
 if($#ARGV < 0 || $#ARGV > 1)
   {
