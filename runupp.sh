@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 test $# == 3 || echo USAGE: $0 gene_id num_cpus homedir
 test $# == 3 || exit 1
 
