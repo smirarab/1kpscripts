@@ -20,5 +20,7 @@ paste <( cat filter-lb-$med-$x |tr  '\n' ';'|tr ':' '\n'|sed -e "s/;;.*$/;/g"|se
 
 bash rem-lb-$med-$x.sh
 
+unset -e
+
 for f in genes/*; do ln -s $y.fasta $f/$y-filterbln-$med.fasta; done
 
