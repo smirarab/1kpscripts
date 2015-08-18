@@ -2,6 +2,7 @@
 
 #print $ARGV[0]." ".$ARGV[1]." ".$#ARGV."\n";
 use File::Basename;
+use Scalar::Util qw(looks_like_number);
 
 my $dir = dirname(__FILE__);
 
@@ -101,15 +102,27 @@ else
     
     for($i = 0; $i < $numberOfModels; $i++)
       {
-	#print "Model: ".$AA_Models[$i]." LH: ". $lh[$i]."\n";
-	if($lh[$i] > $bestLH)
-	  {
-	    $bestLH = $lh[$i];
-	    $bestI = $i;
-	  }
+	#print "Model: ".$AA_Models[$i]." LH: ". $lh[$i]." best: ".$bestI."\n";
+        if (looks_like_number($lh[$i]))
+	 { 
+          if ( $lh[$i] > $bestLH )
+	   {
+	     $bestLH = $lh[$i];
+	     $bestI = $i;
+	   }
+         } else 
+         {
+           exit 1;
+         }
       }
     
-    print "Best Model : ".$AA_Models[$bestI]."\n";
-    $bestModel = $AA_Models[$bestI]; 
+    if ( $bestI != -1 ) {
+	print "Best Model : ".$AA_Models[$bestI]."\n";
+	$bestModel = $AA_Models[$bestI];
+    } else 
+    {
+        exit 1;
+    }
+ 
   }
     

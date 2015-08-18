@@ -30,14 +30,20 @@ if [ "$DT" == "FAA" ]; then
   if [ -s bestModel.$ALGNAME ]; then
     echo bestModel.$ALGNAME exists
   else
+    rm -r modelselection
     mkdir modelselection
     cd modelselection
     ln -s ../$in.phylip .
     perl $DIR/ProteinModelSelection.pl $in.phylip > ../bestModel.$ALGNAME
     cd ..
-    tar cfj modelselection-logs.tar.bz --remove-files modelselection
+    test -s bestModel.$ALGNAME && ( tar cfj modelselection-logs.tar.bz --remove-files modelselection/ )
   fi
-  model=PROTGAMMA`sed -e "s/.* //g" bestModel.$ALGNAME`
+  if [ -s bestModel.$ALGNAME ]; then
+     model=PROTGAMMA`sed -e "s/.* //g" bestModel.$ALGNAME`
+  else
+     echo model selection failed. check the log file
+     exit 1
+  fi
 else
   model=GTRGAMMA
 fi

@@ -45,7 +45,7 @@ def pstdev(data):
 if __name__ == '__main__':
 
     if len(sys.argv) < 2: 
-        print "USAGE: treefile [standard deviation]"
+        print "USAGE: treefile standard_deviation"
         sys.exit(1)
 
     treeName = sys.argv[1]

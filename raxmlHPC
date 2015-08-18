@@ -14,4 +14,4 @@ then
   fi
   mkdir $output
 fi
-$HOME/bin/raxmlHPC-AVX-git-feb52015 $*
+$HOME/bin/raxmlHPC-SSE3-git-feb2015 $*
