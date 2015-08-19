@@ -4,23 +4,24 @@ set -x
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 H=/work/01721/smirarab/1kp/capstone/secondset
 
-test $# == 5 || exit 1
+test $# == 7 || exit 1
 
 ALGNAME=$1
 DT=$2
 CPUS=$3
 ID=$4
 label=$5
+bestN=$6
+rep=$7
 
 S=raxml
 in=$DT-$ALGNAME
-rep=20
-bestN=2
 boot="-x $RANDOM"
 s="-p $RANDOM"
 dirn=raxmlboot.$in.$label
 
 cd $H/genes/$ID/
+mkdir logs
 
 $HOME/workspace/global/src/shell/convert_to_phylip.sh $in.fasta $in.phylip
 test "`head -n 1 $in.phylip`" == "0 0" && exit 1
@@ -29,16 +30,22 @@ if [ "$DT" == "FAA" ]; then
   if [ -s bestModel.$ALGNAME ]; then
     echo bestModel.$ALGNAME exists
   else
+    rm -r modelselection
     mkdir modelselection
     cd modelselection
     ln -s ../$in.phylip .
     perl $DIR/ProteinModelSelection.pl $in.phylip > ../bestModel.$ALGNAME
     cd ..
-    tar cfj modelselection-logs.tar.bz --remove-files modelselection
+    test -s bestModel.$ALGNAME && ( tar cfj modelselection-logs.tar.bz --remove-files modelselection/ )
   fi
-  model=PROTCAT`sed -e "s/.* //g" bestModel.$ALGNAME`
+  if [ -s bestModel.$ALGNAME ]; then
+     model=PROTGAMMA`sed -e "s/.* //g" bestModel.$ALGNAME`
+  else
+     echo model selection failed. check the log file
+     exit 1
+  fi
 else
-  model=GTRCAT
+  model=GTRGAMMA
 fi
 
 mkdir $dirn
@@ -62,8 +69,12 @@ fi
 if [ $rep == 0 ]; then
    mv logs-best.tar.bz logs-best.tar.bz.back.$RANDOM
    tar cvfj logs-best.tar.bz --remove-files RAxML_log.* RAxML_parsimonyTree.* RAxML_*back*  RAxML_result.best.*
-   cd ..
-   echo "Done">.done.best.$dirn
+   if [ -s RAxML_bestTree.best ]; then
+    cd ..
+    echo "Done">.done.best.$dirn
+    exit 0
+   fi
+   exit 1
 fi
 
 #Figure out if bootstrapping has already finished
