@@ -35,7 +35,8 @@ def root (rootgroup, tree):
     if root is None:
         return None
     #print "new root is: ", root.as_newick_string()
-    tree.reroot_at_edge(root.edge,length1=root.edge.length/2,length2=root.edge.length/2)
+    newlen = root.edge.length/2 if root.edge.length else None
+    tree.reroot_at_edge(root.edge,length1=newlen,length2=newlen)
     '''This is to fix internal node labels when treated as support values'''
     while oldroot.parent_node != tree.seed_node and oldroot.parent_node != None:
         oldroot.label = oldroot.parent_node.label
