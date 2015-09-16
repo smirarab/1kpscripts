@@ -1019,9 +1019,9 @@ PYHZ	PYHZ;Lycophytes;Isoetes sp.	Lycophytes
 PKOX	PKOX;Lycophytes;Isoetes tegetiformans	Lycophytes
 LGDQ	LGDQ;Lycophytes;Selaginella apoda	Lycophytes
 JKAA	JKAA;Lycophytes;Selaginella wallacei	Lycophytes
-ABIJ	ABIJ;Lycophytes;Selaginella lepidophylla	Lycophytes
+ABIJ	ABIJ;Lycophytes;Selaginella cf pallescens	Lycophytes
 ZYCD	ZYCD;Lycophytes;Selaginella acanthonota	Lycophytes
-ZZOL	ZZOL;Lycophytes;Selaginella stauntoniana	Lycophytes
+ZZOL	ZZOL;Lycophytes;Selaginella moellendorffii	Lycophytes
 KUXM	KUXM;Lycophytes;Selaginella selaginoides	Lycophytes
 ZFGK	ZFGK;Lycophytes;Selaginella kraussiana	Lycophytes
 KJYC	KJYC;Lycophytes;Selaginella willdenowii	Lycophytes
@@ -1041,7 +1041,7 @@ QVMR	QVMR;Eusporangiate Monilophytes;Psilotum nudum	Eusporangiate Monilophytes
 ALVQ	ALVQ;Eusporangiate Monilophytes;Tmesipteris parva	Eusporangiate Monilophytes
 ORJE	ORJE;Leptosporangiate Monilophytes;Phymatosorus grossus	Leptosporangiate Monilophytes
 PNZO	PNZO;Leptosporangiate Monilophytes;Culcita macrocarpa	Leptosporangiate Monilophytes
-GANB	GANB;Leptosporangiate Monilophytes;Cyathea (Alsophila) spinulosa	Leptosporangiate Monilophytes
+GANB	GANB;Leptosporangiate Monilophytes;Alsophila spinulosa	Leptosporangiate Monilophytes
 EWXK	EWXK;Leptosporangiate Monilophytes;Thyrsopteris elegans	Leptosporangiate Monilophytes
 ZHEE	ZHEE;Core Eudicots/Rosids;Ziziphus jujuba	Core Eudicots/Rosids
 XDVM	XDVM;Leptosporangiate Monilophytes;Sticherus lobatus	Leptosporangiate Monilophytes
@@ -1081,13 +1081,13 @@ FCHS	FCHS;Leptosporangiate Monilophytes;Deparia lobato-crenata	Leptosporangiate 
 UFJN	UFJN;Leptosporangiate Monilophytes;Diplazium wichurae	Leptosporangiate Monilophytes
 HNDZ	HNDZ;Leptosporangiate Monilophytes;Cystopteris utahensis	Leptosporangiate Monilophytes
 LHLE	LHLE;Leptosporangiate Monilophytes;Cystopteris fragilis	Leptosporangiate Monilophytes
-XXHP	XXHP;Leptosporangiate Monilophytes;Cystopteris fragilis	Leptosporangiate Monilophytes
+XXHP	XXHP;Leptosporangiate Monilophytes;Cystopteris sp.	Leptosporangiate Monilophytes
 XWDM	XWDM;Leptosporangiate Monilophytes;Cystopteris fragilis	Leptosporangiate Monilophytes
 RICC	RICC;Leptosporangiate Monilophytes;Cystopteris reevesiana	Leptosporangiate Monilophytes
 YOWV	YOWV;Leptosporangiate Monilophytes;Cystopteris protrusa	Leptosporangiate Monilophytes
 HEGQ	HEGQ;Leptosporangiate Monilophytes;Gymnocarpium dryopteris	Leptosporangiate Monilophytes
 MTGC	MTGC;Leptosporangiate Monilophytes;Dennstaedtia davallioides	Leptosporangiate Monilophytes
-BMIF	BMIF;Leptosporangiate Monilophytes;Odontosororia sp.	Leptosporangiate Monilophytes
+BMIF	BMIF;Leptosporangiate Monilophytes;Asplenium sp.	Leptosporangiate Monilophytes
 VVRN	VVRN;Leptosporangiate Monilophytes;Lonchitis hirsuta	Leptosporangiate Monilophytes
 WCLG	WCLG;Leptosporangiate Monilophytes;Adiantum aleuticum	Leptosporangiate Monilophytes
 BMJR	BMJR;Leptosporangiate Monilophytes;Adiantum raddianum	Leptosporangiate Monilophytes
@@ -1429,7 +1429,7 @@ OGZM	OGZM;Chromista (Algae);Saccharina japonica	Chromista (Algae)
 QDTV	QDTV;Chromista (Algae);Saccharina japonica	Chromista (Algae)
 SRSQ	SRSQ;Chromista (Algae);Saccharina japonica	Chromista (Algae)
 FIDQ	FIDQ;Chromista (Algae);Undaria pinnatifida	Chromista (Algae)
-EBWI	EBWI;Chromista (Algae);Ochromonas sp.	Chromista (Algae)
+EBWI	EBWI;Chromista (Algae);Rebecca salina	Chromista (Algae)
 JQFK	JQFK;Green Algae;Picochlorum atomus	Green Algae
 BOGT	BOGT;Chromista (Algae);Mallomonas sp.	Chromista (Algae)
 DBYD	DBYD;Chromista (Algae);Synura petersenii	Chromista (Algae)
@@ -1457,7 +1457,7 @@ Arath_TAIR10	Arath_TAIR10;Genome;Arabidopsis_thaliana	Core Eudicots/Rosids
 Betvu_v1.1	Betvu_v1.1;Genome;Beta_vulgaris	Core Eudicots
 Carpa_ASGPBv0.4	Carpa_ASGPBv0.4;Genome;Carica_papaya	Core Eudicots/Rosids
 Chabr_v0.1	Chabr_v0.1;Genome;Chara braunii	Green Algae
-Chlre_v5.5	Chlre_v5.5;Genome;Chlamydomonas reinhardii	Green Algae
+Chlre_v5.5	Chlre_v5.5;Genome;Chlamydomonas reinhardtii	Green Algae
 Chlva_v1.0	Chlva_v1.0;Genome;Chlorella variabilis	Green Algae
 Elagu_v2.0	Elagu_v2.0;Genome;Elaeis guineensis	Monocots/Commelinids
 Eucgr_v1.1	Eucgr_v1.1;Genome;Eucalyptus grandis	Core Eudicots/Rosids
@@ -1484,4 +1484,4 @@ FMRU	FMRU;Green Algae;Zygnema_sp._2samples	Green Algae
 RWYZ	RWYZ;Leptosporangiate Monilophytes;Blechnum_spicant	Leptosporangiate Monilophytes
 ZIWB	ZIWB;Core Eudicots/Rosids;Passiflora_sp	Core Eudicots/Rosids
 Cyame_v1.0	Cyame_v1.0;Red Algae;	Red Algae
-Volca_v2.0	Volca_v2.0;Green Algae;Volvox aureus	Green Algae
+Volca_v2.0	Volca_v2.0;Green Algae;Volvox carteri	Green Algae
