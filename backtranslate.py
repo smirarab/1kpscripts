@@ -110,8 +110,7 @@ def backtranslate(faa,fna):
                     cd.append(cds)
                     i += 3
                 else:
-                    print >>sys.stderr, ValueError('%s at position %d of %s does not translate to %s' %(cds, i, k, r))
-                    continue
+                    raise ValueError('%s at position %d of %s does not translate to %s' %(cds, i, k, r))
         newfna[k] = ''.join(cd)
     return newfna
 
