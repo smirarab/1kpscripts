@@ -5,9 +5,8 @@ set -x
 module load python
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-H=$WORK/1kp/capstone/secondset
 
-test $# == 9 || exit 1
+test $# == 10 || exit 1
 
 ALGNAME=$1
 DT=$2
@@ -18,6 +17,7 @@ bestN=$6
 rep=$7
 st=$8 # Start tree, use fasttree for FastTree or anything else for default
 rapid=$9 # use rapid for rapid bootstrapping or anything else for default
+H=${10}
 OMP_NUM_THREADS=$CPUS
 
 S=raxml

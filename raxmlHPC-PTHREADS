@@ -15,4 +15,4 @@ then
   fi
   mkdir $output
 fi
-$HOME/bin/raxmlHPC-PTHREADS-SSE3-git-feb2015 $*
+$HOME/bin/raxmlHPC-PTHREADS-AVX-git-feb52015 $*
